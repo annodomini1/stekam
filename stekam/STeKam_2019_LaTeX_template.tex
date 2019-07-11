@@ -50,8 +50,8 @@
 
 
 
-\title{NAVODILA ZA PISANJE PRISPEVKA ZA SREÈANJE “ŠTUDENTSKA  TEHNIŠKA KONFERENCA - ŠTeKam”}
-\author{doc. dr. Tomaž Berlec, doc. dr. Miha Brojan, dr. Boštjan Drobniè}
+\title{REKONSTRUKCIJA OBJEKTA V OBLIKI OBLAKA TOÈK}
+\author{Martin Knap, Janez Lapajne}
 
 
 \renewcommand{\absnamepos}{flushleft}
@@ -77,19 +77,19 @@
 \maketitle
 
 \begin{abstract}
-V nalogi je obravnavan postopek 3D rekonstukcije objektov na podlagi ve? zajetih slik. Za rekonstrukcijo je uporabljena FBP (angl. \textit{Filtered Backprojection }) metoda. Temelji na rekonstrukciji 3D oblike iz slik, ki so zajete pri znanih kotih zasuka objekta. Velik poudarek je namenjen izgradnji in zasnovi sistema, saj je od njegove postavitve odvisna kakovost zajetih slik.  Osredoto?amo se predvsem na elemente, ki nam pomagajo pri ?imbolj?i rekonstrukciji objekta v obliki oblaka to?k. Prikazana je kalibracija sistema in preslikava slik v metri?ni koordinatni sistem. Predstavljena je uporabnost rekontrukcije objektov in izvedba vzvratnega in?enirstva skeniranega objekta.(ODSTRANI KRATICE)
+V nalogi je obravnavan postopek tridimenzionalne rekonstukcije objektov na podlagi veè zajetih slik. Za rekonstrukcijo je uporabljena metoda filtrirane povratne projekcije. Bistvo metode je rekonstrukcija oblike telesa iz slik, ki so zajete pri znanih kotih zasuka objekta. Velik poudarek je namenjen izgradnji in zasnovi sistema, saj je od njegove postavitve odvisna kakovost zajetih slik.  Osredotoèamo se predvsem na elemente, ki nam pomagajo pri èimboljši rekonstrukciji objekta v obliki oblaka toèk. Prikazana je kalibracija sistema in preslikava slik v metrièni koordinatni sistem. Predstavljena je uporabnost rekontrukcije objektov in izvedba vzvratnega inženirstva skeniranega objekta.
 \end{abstract}
 
 
 \section{Uvod}
-V robotskem vidu in ra?unalni?ki grafiki je 3D rekonstrukcija proces zajemanja oblike in videza realnega objekta. Proces je lahko dose?en z aktivnimi ali pasivnimi metodami. V nalogi je uporabljena pasivna FBP metoda. Uporaba rekonstrukcije lahko dolo?i profil 3D objekta oziroma koordinate katerikoli to?ke na tem profilu. Digitalna slika je v na?em primeru vir informacij. Za dobro rekonstrukcijo je potrebno upo?tevati vizualno dispariteto, osvetlitev, performance kamere in zna?ilnosti scene. Uporabljeno kamero je potrebno ustrezno skalibrirati in merjene to?ke pretvoriti v metri?ni koordinatni sistem. Bolje kot je zastavljen zajem slik, ustreznej?i so kon?ni rezultati. Dobro zajete slike olaj?ajo obdelavo. Rekonstrukcija objektov je uporabljena v razli?nih podro?jih raziskovanja. Med drugim v medicini, robotiki, ra?unalni?kih igrah in v vzvratnem in?enirstvu \cite{vir1,vir2, vir3}. 
+V robotskem vidu in raèunalniški grafiki je 3D rekonstrukcija proces zajemanja oblike in videza realnega objekta. Proces je lahko dosežen z aktivnimi ali pasivnimi metodami. V nalogi je uporabljena pasivna FBP metoda (angl.: \textit{Filtered Back Projection}). Uporaba rekonstrukcije lahko doloèi profil 3D objekta oziroma koordinate katerikoli toèke na tem profilu. Digitalna slika je v našem primeru vir informacij. Za dobro rekonstrukcijo je potrebno upoštevati vizualno dispariteto, osvetlitev, performance kamere in znaèilnosti scene. Uporabljeno kamero je potrebno ustrezno skalibrirati in merjene toèke pretvoriti v metrièni koordinatni sistem. Bolje kot je zastavljen zajem slik, ustreznejši so konèni rezultati. Dobro zajete slike olajšajo obdelavo. Rekonstrukcija objektov je uporabljena v razliènih podroèjih raziskovanja. Med drugim v medicini, robotiki, raèunalniških igrah in v vzvratnem inženirstvu \cite{vir1,vir2, vir3}.  
 
 
 %\section{Metode dela in potek raziskave}
-\section{Teoreti?no ozadje}
+\section{Teoretièno ozadje}
 
 \subsection{Kalibracija}
-Pomagamo si z \cite{spic2}. Pred za?etkom izvedbe rekonstrukcije je potrebna geometrijska kalibracija sistema. Namen kalibracije je pridobitev parametrov toge preslikave, ki jih bomo potrebovali kasneje v algoritmu 3D rekonstrukcije s filtrirano povratno projekcijo. Cilj je projekcija iz slikovnega v metri?ni koordinatni sistem. Referen?ne to?ke kalibracijskega objekta (3D) najprej togo premaknemo na mesto rotirajo?e mize. Nato sledi DLT (angl. \textit{Direct Linear Transformation}) kalibracija med 3D to?kami referen?nega kalibra $T_{ref},_i = (X_i, Y_i, Z_i)$ ter 2D naborom to?k kalibra iz slikovnega koordinatnega sistema $t_{slik},_i = (x_i, y_i)$. Pri tem je ?tevilo to?k kalibracijskega objekta $i = 8$. Pri DLT kalibraciji z razcepom na singularne vrednosti re?ujemo slede?i sistem:
+Pomagamo si z \cite{spic2}. Pred zaèetkom izvedbe rekonstrukcije je potrebna geometrijska kalibracija sistema. Namen kalibracije je pridobitev parametrov toge preslikave, ki jih bomo potrebovali kasneje v algoritmu 3D rekonstrukcije s filtrirano povratno projekcijo. Cilj je projekcija iz slikovnega v metrièni koordinatni sistem. Referenène toèke kalibracijskega objekta (3D) najprej togo premaknemo na mesto rotirajoèe mize. Nato sledi DLT (angl. \textit{Direct Linear Transformation}) kalibracija med 3D toèkami referenènega kalibra $T_{ref},_i = (X_i, Y_i, Z_i)$ ter 2D naborom toèk kalibra iz slikovnega koordinatnega sistema $t_{slik},_i = (x_i, y_i)$. Pri tem je število toèk kalibracijskega objekta $i = 8$. Pri DLT kalibraciji z razcepom na singularne vrednosti rešujemo sledeèi sistem:
 
 
 \begin{equation}
@@ -125,11 +125,11 @@ r_{11} & r_{12} & r_{13} & r_{21} & r_{22} & r_{23} & r_{31} & r_{23} & r_{33} &
 a\textbf{p}^T=0
 \end{equation}
 
-Matrika $a$ ima dimenzije $16 \times 12$. Re?itev sistema predstavlja 12 parametrov toge preslikave, ki predstavljajo rotacijo $r_{ij}$ ter translacijo $t_k$.
+Matrika $a$ ima dimenzije $16 \times 12$. Rešitev sistema predstavlja 12 parametrov toge preslikave, ki predstavljajo rotacijo $r_{ij}$ ter translacijo $t_k$.
 
 \subsection{Filtrirana povratna projekcija}
 
-Pomagamo si z \cite{spic1}. Jedro naloge predstavlja postopek FBP (angl. \textit{Filtered Backprojection}), ki je eden od temelnjih na?inov rekonstrukcije pri slikanju z ra?unalni?ko tomografijo na podro?ju zdravstva. Idejo koncepta filtrirane povratne projekcije je najenostavneje predstaviti na 2D primeru , kjer 2D merjencu $f(x,y)$ za ve? kotov $\theta$ zajamemo 1D pre?ne projekcije $p_{\theta}(r)$ \cite{vir6}.
+Pomagamo si z \cite{spic1}. Jedro naloge predstavlja postopek FBP (angl. \textit{Filtered Backprojection}), ki je eden od temelnjih naèinov rekonstrukcije pri slikanju z raèunalniško tomografijo na podroèju zdravstva. Idejo koncepta filtrirane povratne projekcije je najenostavneje predstaviti na 2D primeru , kjer 2D merjencu $f(x,y)$ za veè kotov $\theta$ zajamemo 1D preène projekcije $p_{\theta}(r)$ \cite{vir6}.
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=4.5cm]{fig/FBPderi}}
@@ -137,7 +137,7 @@ Pomagamo si z \cite{spic1}. Jedro naloge predstavlja postopek FBP (angl. \textit
 	\label{fig:fbp_deri}
 \end{figure}
 
-Zajete projekcije so nato pretvorjene v frekven?no domeno s pomo?jo Fourier-ove transformacije $P_{\theta}(\omega)$ za vsak kot. Tu nato sledi filtriranje projekcij s frekven?nim odzivom $|\omega|$ tako, da dobimo $g_{\theta}(r) = \int  P_{\theta}(\omega)|\omega|e^{i 2\pi\omega r} d\omega$. S filtriranjem se ?elimo znebiti visokih frekvenc v projekcijah in posledi?no pridobiti kvalitetnej?o rekonstrukcijo. Po filtriranju nato sledi ?e rekonstrukcija v $f'(x,y)$ in sicer tako, da filtrirane inverze Fourier-ove transformacije se?tejemo.
+Zajete projekcije so nato pretvorjene v frekvenèno domeno s pomoèjo Fourier-ove transformacije $P_{\theta}(\omega)$ za vsak kot. Tu nato sledi filtriranje projekcij s frekvenènim odzivom $|\omega|$ tako, da dobimo $g_{\theta}(r) = \int  P_{\theta}(\omega)|\omega|e^{i 2\pi\omega r} d\omega$. S filtriranjem se želimo znebiti visokih frekvenc v projekcijah in posledièno pridobiti kvalitetnejšo rekonstrukcijo. Po filtriranju nato sledi še rekonstrukcija v $f'(x,y)$ in sicer tako, da filtrirane inverze Fourier-ove transformacije seštejemo.
 
 \begin{equation}
 f'(x,y) = \frac{1}{2\pi} \int_{0}^{\pi} g_{\theta}(r) (x \cos\theta + y \sin \theta)d\theta
@@ -148,7 +148,7 @@ Ali v diskretni obliki, kjer je $\Delta\theta$ korak diskretizacije:
 f'(x,y) = \frac{1}{2\pi} \sum\limits_{i=0}^{N-1} \Delta\theta_i g_{\theta_i}(x \cos\theta_i + \sin\theta_i)
 \end{equation}
 
-Za potrebe naloge je postopek raz?irjen v tretjo dimenzijo. Na spodnji sliki je prikazan diagram poteka uporabljenjega FBP algoritma.
+Za potrebe naloge je postopek razširjen v tretjo dimenzijo. Na spodnji sliki je prikazan diagram poteka uporabljenjega FBP algoritma.
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=6cm]{fig/FBPflow}}
@@ -156,9 +156,9 @@ Za potrebe naloge je postopek raz?irjen v tretjo dimenzijo. Na spodnji sliki je 
 	\label{fig:fbp_flow}
 \end{figure}
 
-\subsection{Poravnava oblakov to?k}
+\subsection{Poravnava oblakov toèk}
 %
-Potek algoritma poravnave to?k je prikazan na sliki ~\ref{fig:alg_poravnava}. Poravnavno izvajamo med dvema oblakoma to?k tako, da enega prilagajamo na drugega. Na za?etku oba oblaka to?k postavimo v koordinatno izhodi??e. Nato izvajamo optimizacijo prileganja na razli?ih rotacijah prilagajo?ega oblaka. Slednje je izvedeno tako, da prilagajo? oblak rotiramo po 20 stopinj in v vsaki legi izvajamo optimizacijo. To ponavljamo za 360 stopinj. Na koncu med vsemi izberemo poravnano lego, ki nam zagotavlja najmanj?o povpre?no napako. 
+Potek algoritma poravnave toèk je prikazan na sliki ~\ref{fig:alg_poravnava}. Poravnavno izvajamo med dvema oblakoma toèk tako, da enega prilagajamo na drugega. Na zaèetku oba oblaka toèk postavimo v koordinatno izhodišèe. Nato izvajamo optimizacijo prileganja na razlièih rotacijah prilagajoèega oblaka. Slednje je izvedeno tako, da prilagajoè oblak rotiramo po 20 stopinj in v vsaki legi izvajamo optimizacijo. To ponavljamo za 360 stopinj. Na koncu med vsemi izberemo poravnano lego, ki nam zagotavlja najmanjšo povpreèno napako. 
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=4.5cm]{fig/alg_poravnava}}
@@ -167,7 +167,7 @@ Potek algoritma poravnave to?k je prikazan na sliki ~\ref{fig:alg_poravnava}. Po
 \end{figure}
 
 \section{Zajem slik}
-Sistem s katerim smo izvajali rekonstrukcijo je blokovno prikazan na sliki ~\ref{fig:blokovna}. Objekt, ki ga ?elimo skonstruirati postavimo na vrtljivo pozicionirno mizo. Iz zgornje strani navzdol svetimo s homogeno, difuzno osvetlitvijo. Objekta direktno ne osvetljujemo, saj je namen osvetlitve predvsem osvetlitev ozadja z enakomerno intenziteto. Cilj je dose?i ?imve?jo razliko v intenziteti med opazovanim objektom in zaslonom. Za ta namen je med objekt in svetilko postavljena svetlobna ovira. Slike smo zajemali z Raspberry Pi kamero v osi na objekt in na osvetljeno ozadje. Pred kamero je dodan filter za namen filtriranja okoli?ke svetlobe.
+Sistem s katerim smo izvajali rekonstrukcijo je blokovno prikazan na sliki ~\ref{fig:blokovna}. Objekt, ki ga želimo skonstruirati postavimo na vrtljivo pozicionirno mizo. Iz zgornje strani navzdol svetimo s homogeno, difuzno osvetlitvijo. Objekta direktno ne osvetljujemo, saj je namen osvetlitve predvsem osvetlitev ozadja z enakomerno intenziteto. Cilj je doseèi èimveèjo razliko v intenziteti med opazovanim objektom in zaslonom. Za ta namen je med objekt in svetilko postavljena svetlobna ovira. Slike smo zajemali z Raspberry Pi kamero v osi na objekt in na osvetljeno ozadje. Pred kamero je dodan filter za namen filtriranja okoliške svetlobe.
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=8.2cm]{fig/blokovna_sistem}}
@@ -175,7 +175,7 @@ Sistem s katerim smo izvajali rekonstrukcijo je blokovno prikazan na sliki ~\ref
 	\label{fig:blokovna}
 \end{figure}
 %
- Celoten proces zajemanja krmilnimo z ra?unalnikom. Ta je ?i?no povezan na krmilnik s katerim upravljamo rotirajo?o pozicionirno mizo. Prav tako je ra?unalnik brez?i?no povezan na Raspberry Pi. Ta zajete slike po?ilja na ra?unalnik. Objekt rekonstruiramo tako, da ga postavimo na predvideno mesto. Nato lahko pri?nemo z zajemom slik. Najprej inicializiramo kamero na za?etne vrednosti. Nastavimo ISO na 200, svetlost na 45 in resolucijo na 900x1000.  Objekt obra?amo po za?rtanih zasukih. Po vsakem izvedenem zasuku posnamemo eno sliko, ki se nato brez?i?no prenese iz Raspberry Pi-ja na ra?unalnik. Postopek ponavljamo dokler objekta ne poslikamo v rangu celotnega kroga. Zajete slike ob znanih kotih zasuka se kasneje uporabijo za 3D rekonstrukcijo. V tabeli ~\ref{tab:komponente} so zapisane vse glavne komponente, ki so zajete v postavljenem sistemu. Manj?e komponente kot so vijaki in nosilci v tabeli niso zajeti.
+ Celoten proces zajemanja krmilnimo z raèunalnikom. Ta je žièno povezan na krmilnik s katerim upravljamo rotirajoèo pozicionirno mizo. Prav tako je raèunalnik brezžièno povezan na Raspberry Pi. Ta zajete slike pošilja na raèunalnik. Objekt rekonstruiramo tako, da ga postavimo na predvideno mesto. Nato lahko priènemo z zajemom slik. Najprej inicializiramo kamero na zaèetne vrednosti. Nastavimo ISO na 200, svetlost na 45 in resolucijo na 900x1000.  Objekt obraèamo po zaèrtanih zasukih. Po vsakem izvedenem zasuku posnamemo eno sliko, ki se nato brezžièno prenese iz Raspberry Pi-ja na raèunalnik. Postopek ponavljamo dokler objekta ne poslikamo v rangu celotnega kroga. Zajete slike ob znanih kotih zasuka se kasneje uporabijo za 3D rekonstrukcijo. V tabeli ~\ref{tab:komponente} so zapisane vse glavne komponente, ki so zajete v postavljenem sistemu. Manjše komponente kot so vijaki in nosilci v tabeli niso zajeti.
 
 \begin{center}
 	\centering
@@ -187,7 +187,7 @@ Sistem s katerim smo izvajali rekonstrukcijo je blokovno prikazan na sliki ~\ref
 	\textbf{Komponenta} & \textbf{Podrobnosti}                            \\ \hline
 	Raspberry Pi        & Raspberry Pi 3 Model B                          \\ \hline
 	Svetilka            & Halogenska svetilka (12V)            \\ \hline
-	Zaslon              & Bela ravna plo??a                               \\ \hline
+	Zaslon              & Bela ravna plošèa                               \\ \hline
 	Krmilnik            & Fischertechnik stage control                \\ \hline
 	Kamera              & RP Cam V2-8 MP,1080p \\ \hline
 	Svetlobni filter    & Ozkopasovni filter         \\ \hline
@@ -195,7 +195,7 @@ Sistem s katerim smo izvajali rekonstrukcijo je blokovno prikazan na sliki ~\ref
 		Pozicionirna miza   & Fischertechnik rotary stage                     \\ \hline
 \end{tabular}
 \end{center}
-Primer zajete slike obravnavanega objekta z opisanim sistemom je prikazan na sliki ~\ref{fig:zajeta_slika}. S slike lahko vidimo dober kontrast objekta in precej?njo razliko v barvi in svetlosti objekta proti ozadju. 
+Primer zajete slike obravnavanega objekta z opisanim sistemom je prikazan na sliki ~\ref{fig:zajeta_slika}. S slike lahko vidimo dober kontrast objekta in precejšnjo razliko v barvi in svetlosti objekta proti ozadju. 
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=4.2cm]{fig/zajeta_slika}}
@@ -204,8 +204,11 @@ Primer zajete slike obravnavanega objekta z opisanim sistemom je prikazan na sli
 \end{figure}
 
 \section{Rezultati}
+
+
+
 \subsection{Vpliv kontrasta}
-Testirali smo kako svetlobna pregrada vpliva na rekonstrukcijo oblaka to?k. Za ta namen smo vzeli enostaven objekt s stali??a rekonstrukcije. Ta je prikazan na sliki ~\ref{fig:slusalkEE}. Na levi strani je prikazana slika objekta kjer svetlobne ovire nismo uporabili. Razvidnno je, da se od objekta svetloba reflektivno odbiva v kamero. Kamera to zazna kot svetlo intenziteto. Deli objekta, ki so tako osvetljeni se po svetlosti veliko ne razlikujejo od ozadja, na nekaterih delih pa so celo zaznani, kot svetlej?i. Na desni strani je prikazana slika objekta, kjer svetlobno oviro uporabimo. Objekt je v tem primeru bistveno temnej?i od ozadja.
+Testirali smo kako svetlobna pregrada vpliva na rekonstrukcijo oblaka toèk. Za ta namen smo vzeli enostaven objekt s stališèa rekonstrukcije. Ta je prikazan na sliki ~\ref{fig:slusalkEE}. Na levi strani je prikazana slika objekta kjer svetlobne ovire nismo uporabili. Razvidnno je, da se od objekta svetloba reflektivno odbiva v kamero. Kamera to zazna kot svetlo intenziteto. Deli objekta, ki so tako osvetljeni se po svetlosti veliko ne razlikujejo od ozadja, na nekaterih delih pa so celo zaznani, kot svetlejši. Na desni strani je prikazana slika objekta, kjer svetlobno oviro uporabimo. Objekt je v tem primeru bistveno temnejši od ozadja.
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=6.2cm]{fig/slusalke_1}}
@@ -213,7 +216,7 @@ Testirali smo kako svetlobna pregrada vpliva na rekonstrukcijo oblaka to?k. Za t
 	\label{fig:slusalkEE}
 \end{figure}
 
-Na sliki ~\ref{fig:slusalke} sta prikazana rezultata rekonstrukcij brez in z uporabo svetlobne ovire. Opazimo lahko, da je v primeru uporabljene pregrade objekt bistveno lep?e rekonstruiran. V primeru, ko zavese nismo uporabili nam odboji povzro?ajo napa?no reprezentacijo objekta. 
+Na sliki ~\ref{fig:slusalke} sta prikazana rezultata rekonstrukcij brez in z uporabo svetlobne ovire. Opazimo lahko, da je v primeru uporabljene pregrade objekt bistveno lepše rekonstruiran. V primeru, ko zavese nismo uporabili nam odboji povzroèajo napaèno reprezentacijo objekta. 
 
 
 
@@ -224,8 +227,8 @@ Na sliki ~\ref{fig:slusalke} sta prikazana rezultata rekonstrukcij brez in z upo
 \end{figure}
 
 
-\subsection{?tevilo zajetih slik}
-Dvakrat smo rekonstruirali isti predmet. Enkrat na podlagi 30 slik in drugi? na podlagi 90 slik. Opazovali smo kako ?tevilo zajetih slik vpliva na rekontrukcijo. Na sliki ~\ref{fig:slika_90_30} je ?isto na levi strani prikazan skeniran objekt, na sredini objekt rekonstruiran na podlagi 90 slik in na desni objekt rekonstruiran na podlagi 30 slik. Vidimo, da je dobimo bolj?o obliko na podlagi ve?ih slik. Za prikaz celotnega objekta v obeh primerih bi bilo potrebno prilagoditi meje upragovanja. 
+\subsection{Število zajetih slik}
+Dvakrat smo rekonstruirali isti predmet. Enkrat na podlagi 30 slik in drugiè na podlagi 90 slik. Opazovali smo kako število zajetih slik vpliva na rekontrukcijo. Na sliki ~\ref{fig:slika_90_30} je èisto na levi strani prikazan skeniran objekt, na sredini objekt rekonstruiran na podlagi 90 slik in na desni objekt rekonstruiran na podlagi 30 slik. Vidimo, da je dobimo boljšo obliko na podlagi veèih slik. Za prikaz celotnega objekta v obeh primerih bi bilo potrebno prilagoditi meje upragovanja. 
 %
 \begin{figure}[H]
 	\centerline{\includegraphics[width=8cm]{fig/slika_90_30}}
@@ -234,8 +237,8 @@ Dvakrat smo rekonstruirali isti predmet. Enkrat na podlagi 30 slik in drugi? na 
 \end{figure}
 %
 %
-\subsection{Poravnava oblakov to?k}
-Za dodaten eksperiment smo izvedli medsebojno poravnavo oblakov to?k. Referen?ni oblak to?k smo zajeli z 90 slikami in si zapolnili referen?no lego objekta na pozicionirni mizi. Nato smo izvedli ?e ?est zajemov po 30 slik. Ob vsakem zajemu smo skeniran objekt zasukali za predpisan kot glede na referen?no lego okoli vertikalne osi. Tako smo zajeli oblake to?k zasukane za 45, 90, 135, 180, 225 in 315 stopinj. Na sliki ~\ref{fig:poravnava} sta zaradi preglednosti prikazana le referen?ni oblak in oblak zasukan za 90 stopinj. Na levi strani sta oblaka prikazana pred poravnavo in na desni po poravnavi. 
+\subsection{Poravnava oblakov toèk}
+Za dodaten eksperiment smo izvedli medsebojno poravnavo oblakov toèk. Referenèni oblak toèk smo zajeli z 90 slikami in si zapolnili referenèno lego objekta na pozicionirni mizi. Nato smo izvedli še šest zajemov po 30 slik. Ob vsakem zajemu smo skeniran objekt zasukali za predpisan kot glede na referenèno lego okoli vertikalne osi. Tako smo zajeli oblake toèk zasukane za 45, 90, 135, 180, 225 in 315 stopinj. Na sliki ~\ref{fig:poravnava} sta zaradi preglednosti prikazana le referenèni oblak in oblak zasukan za 90 stopinj. Na levi strani sta oblaka prikazana pred poravnavo in na desni po poravnavi. 
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=8cm]{fig/poravnava}}
@@ -243,17 +246,17 @@ Za dodaten eksperiment smo izvedli medsebojno poravnavo oblakov to?k. Referen?ni
 	\label{fig:poravnava}
 \end{figure}
 %
-Za vse, pod razli?nimi koti zajete oblake to?k, smo izvedli poravnavo. Nato smo iz pridobljene transformacijske matrike izlu??ili rotacijo okoli vertikalne osi. Ker smo poznali kote zasuka objekta glede na referen?no lego, smo jih primerjali s temi pridobljenimi iz transformacijske matrike. Na sliki ~\ref{fig:poravnava_graf} so z rde?o barvo prikazani ro?no dolo?eni zasuki, z modro pa zasuki pridobljeni iz transformacijske matrike. Vidimo, da dobimo z izra?unanimi koti na podlagi transformacijske matrike dokaj zanesljive rezultate. Prileganje testiranih zasukov glede na referen?ne je v rangu petih stopinj. Napaka se verjetno pojavi zaradi napak v pozicionirnem sistemu, nenatan?ne meritve kota glede na referen?no lego in napake v numeri?nem izra?unu.
+Za vse, pod razliènimi koti zajete oblake toèk, smo izvedli poravnavo. Nato smo iz pridobljene transformacijske matrike izlušèili rotacijo okoli vertikalne osi. Ker smo poznali kote zasuka objekta glede na referenèno lego, smo jih primerjali s temi pridobljenimi iz transformacijske matrike. Na sliki ~\ref{fig:poravnava_graf} so z rdeèo barvo prikazani roèno doloèeni zasuki, z modro pa zasuki pridobljeni iz transformacijske matrike. Vidimo, da dobimo z izraèunanimi koti na podlagi transformacijske matrike dokaj zanesljive rezultate. Prileganje testiranih zasukov glede na referenène je v rangu petih stopinj. Napaka se verjetno pojavi zaradi napak v pozicionirnem sistemu, nenatanène meritve kota glede na referenèno lego in napake v numeriènem izraèunu.
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=8cm]{fig/graf_poravnave}}
-	\caption{Razlika med referen?nimi in dejanskimi koti.}
+	\caption{Razlika med referenènimi in dejanskimi koti.}
 	\label{fig:poravnava_graf}
 \end{figure}
 
-\subsection{Vzvratno in?enirstvo}
+\subsection{Vzvratno inženirstvo}
 
-Vzvratno in?enirstvo je proces, kjer na podlagi fizi?nega objekta rekonstruiramo njegov model. Model smo dobili tako, da smo z rekonstrukcijo dobljen oblak to?k uvozili v 3D modelirnik Solidworks. Tam smo z uporabo posebnih orodij iz to?k povr?ine predmeta dobili povr?ino sestavljeno iz trikotnikov in posledi?no zaprli vse odprtine tako, da smo dobili zaprto povr?ino. Nato je sledila interpolacija z namenom pridobive gladkej?e povr?ine in transformacija v "trdnino". Po opravljenih korakih smo imeli model v primerni obliki za izvoz v formatu .stl. Omenjeni format se nato uvozi v razslojevalni (angl. \textit{Slicer}), ki napravi G-kodo 3D tiskalnika za tvorbo fizi?nega modela. Na sliki ~\ref{fig:print_slusalke} je na levi strani prikazan natisnjen objekt. Na desni strani je prikazan model pripravljen na tiskanje. Gre za objekt s slike ~\ref{fig:slusalkEE}.
+Vzvratno inženirstvo je proces, kjer na podlagi fiziènega objekta rekonstruiramo njegov model. Model smo dobili tako, da smo z rekonstrukcijo dobljen oblak toèk uvozili v 3D modelirnik Solidworks. Tam smo z uporabo posebnih orodij iz toèk površine predmeta dobili površino sestavljeno iz trikotnikov in posledièno zaprli vse odprtine tako, da smo dobili zaprto površino. Nato je sledila interpolacija z namenom pridobive gladkejše površine in transformacija v "trdnino". Po opravljenih korakih smo imeli model v primerni obliki za izvoz v formatu .stl. Omenjeni format se nato uvozi v razslojevalni (angl. \textit{Slicer}), ki napravi G-kodo 3D tiskalnika za tvorbo fiziènega modela. Na sliki ~\ref{fig:print_slusalke} je na levi strani prikazan natisnjen objekt. Na desni strani je prikazan model pripravljen na tiskanje. Gre za objekt s slike ~\ref{fig:slusalkEE}.
 
 \begin{figure}[H]
 	\centerline{\includegraphics[width=7cm]{fig/print_slusalke}}
@@ -261,20 +264,21 @@ Vzvratno in?enirstvo je proces, kjer na podlagi fizi?nega objekta rekonstruiramo
 	\label{fig:print_slusalke}
 \end{figure}
 
-\section{Zakljuèki}
-Tekom izvajanja naloge smo ugotovili da postopek 3D FBP rekonstrukcije dobro deluje pri popisu predmetov, ki ne vsebujejo majhnih detajlov (slika \ref{fig:slika_90_30}).  Na kvaliteto rekonstrukcije mo?no vplivamo s ?tevilom zajetih slik ter z ustrezno osvetlitvijo, tako se znebimo ?rtastih arftefaktov, ki nastanejo s postopkom FBP. Pri tem pa je potrebno omeniti, da se ?as rekonstrukcije mo?no pove?a z ve?jim ?tevilom slik. S pojmom dobra osvetlitev pa mislimo velik kontrast med ozadejm ter slikanim predmetom. Uporabljen algoritem rekonstrukcije omogo?a tudi grobo dimenzijsko analizo, saj z upo?tevanjem lo?ljivosti dobimo rekonstrukcijo v pribli?nih dimenzijah merjenca.
 
-Poravnava oblakov se je izkazala za izredno uspe?no kot to prikazuje tudi graf na sliki \ref{fig:poravnava_graf}. Pri pretvorbi digitalnega modela v fizi?nega pa smo ugotovili, da na kvaliteto rezultirajo?ega modela mo?no vpliva vrsta algortima za izlu??evanje to?k povr?ine, transformacija oblaka to?k v 3D model ter sam postopek 3D tiskanja.
+\section{Zakljuèek}
+Tekom izvajanja naloge smo ugotovili da postopek 3D FBP rekonstrukcije dobro deluje pri popisu predmetov, ki ne vsebujejo majhnih detajlov (slika \ref{fig:slika_90_30}).  Na kvaliteto rekonstrukcije moèno vplivamo s številom zajetih slik ter z ustrezno osvetlitvijo, tako se znebimo èrtastih arftefaktov, ki nastanejo s postopkom FBP. Pri tem pa je potrebno omeniti, da se èas rekonstrukcije moèno poveèa z veèjim številom slik. S pojmom dobra osvetlitev pa mislimo velik kontrast med ozadejm ter slikanim predmetom. Uporabljen algoritem rekonstrukcije omogoèa tudi grobo dimenzijsko analizo, saj z upoštevanjem loèljivosti dobimo rekonstrukcijo v približnih dimenzijah merjenca.
 
-%Z na?o tehniko rekonstruiranja nismo popisali dovolj dobrih delailov, ?as rekonstrukcije se pove?juje z velikostjo sempljanja, ugotovili smo, da je sistem zelo pomemben + osvetlitev. Pomembno tud ?tevilo slik. Poravnava slik, nam je dobro uspela - lahko ?e ne bi poznali pod kak?nim kotom je poslikal in dobil koliko je zamaknjen glede na referen?no lego.
+Poravnava oblakov se je izkazala za izredno uspešno kot to prikazuje tudi graf na sliki \ref{fig:poravnava_graf}. Pri pretvorbi digitalnega modela v fiziènega pa smo ugotovili, da na kvaliteto rezultirajoèega modela moèno vpliva vrsta algortima za izlušèevanje toèk površine, transformacija oblaka toèk v 3D model ter sam postopek 3D tiskanja.
+
+%Z našo tehniko rekonstruiranja nismo popisali dovolj dobrih delailov, èas rekonstrukcije se poveèjuje z velikostjo sempljanja, ugotovili smo, da je sistem zelo pomemben + osvetlitev. Pomembno tud število slik. Poravnava slik, nam je dobro uspela - lahko èe ne bi poznali pod kakšnim kotom je poslikal in dobil koliko je zamaknjen glede na referenèno lego.
 
 
 \begin{thebibliography}{10}
-\bibitem{spic1} ?. ?piclin, B. Likar, M. Burmen. {\em Predavanje pri predmetu - Biomedicinske slikovne tehnologije: Rekonstrukcija slik}, \hskip 1em plus 0.5em minus 0.4em \relax Univerza v Ljubljani, 2018.
-\bibitem{spic2} ?. ?piclin. {\em Predavanje pri predmetu - Robotski vid: Prileganje modelov na slike}, \hskip 1em plus 0.5em minus 0.4em \relax Univerza v Ljubljani, 2019.
+\bibitem{spic1} Ž. Špiclin, B. Likar, M. Burmen. {\em Predavanje pri predmetu - Biomedicinske slikovne tehnologije: Rekonstrukcija slik}, \hskip 1em plus 0.5em minus 0.4em \relax Univerza v Ljubljani, 2018.
+\bibitem{spic2} Ž. Špiclin. {\em Predavanje pri predmetu - Robotski vid: Prileganje modelov na slike}, \hskip 1em plus 0.5em minus 0.4em \relax Univerza v Ljubljani, 2019.
 \bibitem{vir1} Moons, Theo, Luc Van Gool.  {\em 3D reconstruction from multiple images part 1: Principles}, \hskip 1em plus 0.5em minus 0.4em \relax Foundations and Trends in Computer Graphics and Vision 4.4: 287-404, 2010.
 \bibitem{vir2}Vosselman, George, and Sander Dijkman.   {\em 3D building model reconstruction from point clouds and ground plans}, \hskip 1em plus 0.5em minus 0.4em \relax International archives of photogrammetry remote sensing and spatial information sciences 34.3/W4: 37-44, 2001.
-\bibitem{vir3} Woodham, Robert J.  {\em  Photometric method for determining surface orientation from multiple images}, \hskip 1em plus 0.5em minus 0.4em \relax Optical Engineering. 19 (1): 138?141, 1980.
+\bibitem{vir3} Woodham, Robert J.  {\em  Photometric method for determining surface orientation from multiple images}, \hskip 1em plus 0.5em minus 0.4em \relax Optical Engineering. 19 (1): 138–141, 1980.
 \bibitem{vir4}   {\em Raspberry Pi 3, Model B V1.2 Technical Specifications}, \hskip 1em plus 0.5em minus 0.4em \relax RS Components, 20.9.2017.
 \bibitem{vir5}   {\em Fischertechnik Technical Specifications}, \hskip 1em plus 0.5em minus 0.4em \relax fischertechnik GmbH, 2016.
 \bibitem{vir6}   {\em https://en.wikipedia.org/wiki/Tomographic\_reconstruction}, \hskip 1em plus 0.5em minus 0.4em \relax Obiskano dne: 24.5.2019 

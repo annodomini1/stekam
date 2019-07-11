@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.12.30)  11 JUL 2019 15:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6840 64-bit) (preloaded format=pdflatex 2018.12.30)  11 JUL 2019 16:53
 entering extended mode
 **./STeKam_2019_LaTeX_template.tex
 (STeKam_2019_LaTeX_template.tex
@@ -478,34 +478,34 @@ Package pdftex.def Info: fig/zajeta_slika.jpg  used on input line 201.
 <fig/slusalke_1.png, id=36, 665.48625pt x 338.01282pt>
 File: fig/slusalke_1.png Graphic file (type png)
 <use fig/slusalke_1.png>
-Package pdftex.def Info: fig/slusalke_1.png  used on input line 211.
+Package pdftex.def Info: fig/slusalke_1.png  used on input line 214.
 (pdftex.def)             Requested size: 176.407pt x 89.59875pt.
 <fig/slusalke.png, id=37, 524.71031pt x 240.9pt>
 File: fig/slusalke.png Graphic file (type png)
 <use fig/slusalke.png>
-Package pdftex.def Info: fig/slusalke.png  used on input line 221.
+Package pdftex.def Info: fig/slusalke.png  used on input line 224.
 (pdftex.def)             Requested size: 176.407pt x 80.98962pt.
 <fig/slika_90_30.png, id=38, 756.57657pt x 216.81pt>
 File: fig/slika_90_30.png Graphic file (type png)
 <use fig/slika_90_30.png>
-Package pdftex.def Info: fig/slika_90_30.png  used on input line 231.
+Package pdftex.def Info: fig/slika_90_30.png  used on input line 234.
 (pdftex.def)             Requested size: 227.62204pt x 65.22876pt.
  [6 <./fig/slusalke_1.png> <./fig/slusalke.png> <./fig/slika_90_30.png>]
 <fig/poravnava.png, id=45, 469.755pt x 201.00093pt>
 File: fig/poravnava.png Graphic file (type png)
 <use fig/poravnava.png>
-Package pdftex.def Info: fig/poravnava.png  used on input line 241.
+Package pdftex.def Info: fig/poravnava.png  used on input line 244.
 (pdftex.def)             Requested size: 227.62204pt x 97.39638pt.
 <fig/graf_poravnave.png, id=46, 432.11438pt x 322.20375pt>
 File: fig/graf_poravnave.png Graphic file (type png)
 <use fig/graf_poravnave.png>
-Package pdftex.def Info: fig/graf_poravnave.png  used on input line 249.
+Package pdftex.def Info: fig/graf_poravnave.png  used on input line 252.
 (pdftex.def)             Requested size: 227.62204pt x 169.72488pt.
  [7 <./fig/poravnava.png> <./fig/graf_poravnave.png>]
 <fig/print_slusalke.jpg, id=53, 2535.4725pt x 1471.4975pt>
 File: fig/print_slusalke.jpg Graphic file (type jpg)
 <use fig/print_slusalke.jpg>
-Package pdftex.def Info: fig/print_slusalke.jpg  used on input line 259.
+Package pdftex.def Info: fig/print_slusalke.jpg  used on input line 262.
 (pdftex.def)             Requested size: 199.16928pt x 115.58914pt.
  [8 <./fig/print_slusalke.jpg>] [9]
 (STeKam_2019_LaTeX_template.aux)
@@ -516,12 +516,12 @@ LaTeX Font Warning: Size substitutions with differences
  ) 
 Here is how much of TeX's memory you used:
  5808 strings out of 492970
- 87710 string characters out of 3135851
- 176649 words of memory out of 3000000
+ 87762 string characters out of 3135851
+ 176571 words of memory out of 3000000
  9558 multiletter control sequences out of 15000+200000
  13072 words of font info for 50 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,12n,43p,971b,333s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,12n,43p,988b,333s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKT
@@ -532,7 +532,7 @@ msfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Pro
 gram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on STeKam_2019_LaTeX_template.pdf (9 pages, 1881774 bytes).
+Output written on STeKam_2019_LaTeX_template.pdf (9 pages, 1879754 bytes).
 PDF statistics:
  95 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
