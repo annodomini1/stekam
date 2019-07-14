@@ -226,8 +226,8 @@ Sistem s katerim smo izvajali rekonstrukcijo je blokovno prikazan na sliki ~\ref
 Primer zajete slike obravnavanega objekta z opisanim sistemom je prikazan na sliki ~\ref{fig:zajeta_slika}. S slike lahko vidimo dober kontrast objekta in precejšnjo razliko v barvi in svetlosti objekta proti ozadju. 
 
 \begin{figure}[H]
-	\centerline{\includegraphics[width=5cm]{fig/zajeta_slika}}
-	\caption{Zajeta slika.}
+	\centerline{\includegraphics[width=4cm]{fig/zajeta_slika}}
+	\caption{Primer zajete slike.}
 	\label{fig:zajeta_slika}
 \end{figure}
 
@@ -239,7 +239,7 @@ Primer zajete slike obravnavanega objekta z opisanim sistemom je prikazan na sli
 Testirali smo kako svetlobna pregrada vpliva na rekonstrukcijo oblaka toèk. Za ta namen smo vzeli enostaven objekt s stališèa rekonstrukcije. Ta je prikazan na sliki ~\ref{fig:slusalkEE}. Na levi strani je prikazana slika objekta kjer svetlobne ovire nismo uporabili. Razvidnno je, da se od objekta svetloba reflektivno odbija v kamero. Kamera to zazna kot svetlo intenziteto. Deli objekta, ki so tako osvetljeni se po svetlosti veliko ne razlikujejo od ozadja, na nekaterih delih pa so celo zaznani, kot svetlejši. Na desni strani je prikazana slika objekta, kjer svetlobno oviro uporabimo. Objekt je v tem primeru bistveno temnejši od ozadja.
 
 \begin{figure}[H]
-	\centerline{\includegraphics[width=7cm]{fig/slusalke_1}}
+	\centerline{\includegraphics[width=6cm]{fig/slusalke_1}}
 	\caption{Objekt: a) brez pregrade, b) s pregrado.}
 	\label{fig:slusalkEE}
 \end{figure}
@@ -249,7 +249,7 @@ Na sliki ~\ref{fig:slusalke} sta prikazana rezultata rekonstrukcij brez in z upo
 
 
 \begin{figure}[H]
-	\centerline{\includegraphics[width=5cm]{fig/slusalke}}
+	\centerline{\includegraphics[width=6cm]{fig/slusalke}}
 	\caption{Rekonstrukcija: a) brez pregrade, b) s pregrado.}
 	\label{fig:slusalke}
 \end{figure}
@@ -259,7 +259,7 @@ Na sliki ~\ref{fig:slusalke} sta prikazana rezultata rekonstrukcij brez in z upo
 Dvakrat smo rekonstruirali isti predmet. Enkrat na podlagi 30 slik in drugiè na podlagi 90 slik. Opazovali smo kako število zajetih slik vpliva na rekontrukcijo. Na sliki ~\ref{fig:slika_90_30} je èisto na levi strani prikazan skenirani objekt, na sredini objekt rekonstruiran na podlagi 90 slik in na desni objekt rekonstruiran na podlagi 30 slik. Vidimo, da dobimo boljšo obliko na podlagi veèih slik. Za prikaz celotnega objekta v obeh primerih bi bilo potrebno prilagoditi meje upragovanja (angl.: \textit{Thresholding}) prerezov 3D slike. 
 %
 \begin{figure}[H]
-	\centerline{\includegraphics[width=8cm]{fig/slika_90_30}}
+	\centerline{\includegraphics[width=10.5cm]{fig/slika_90_30}}
 	\caption{a) objekt, b) zajetih 90 slik, c) zajetih 30 slik.}
 	\label{fig:slika_90_30}
 \end{figure}
@@ -271,7 +271,7 @@ Dvakrat smo rekonstruirali isti predmet. Enkrat na podlagi 30 slik in drugiè na 
 Vzvratno inženirstvo je proces, kjer na podlagi fiziènega objekta rekonstruiramo njegov model. Model smo dobili tako, da smo z rekonstrukcijo dobljen oblak toèk uvozili v 3D modelirnik Solidworks. Tam smo z uporabo posebnih orodij iz toèk površine predmeta dobili površino sestavljeno iz trikotnikov in posledièno zaprli vse odprtine tako, da smo dobili zaprto površino. Nato je sledila interpolacija z namenom pridobive gladkejše površine in transformacija v "trdnino" (angl.: \textit{Solid}). Po opravljenih korakih smo imeli model v primerni obliki za izvoz v formatu \verb|.stl|. Omenjeni format se nato uvozi v razslojevalnik (angl.: \textit{Slicer}), ki napravi G-kodo 3D tiskalnika za tvorbo fiziènega modela. Na sliki ~\ref{fig:print_slusalke} je na levi strani prikazan natisnjen objekt. Na desni strani je prikazan model pripravljen na tiskanje. Gre za objekt s slike ~\ref{fig:slusalkEE}.
 
 \begin{figure}[H]
-	\centerline{\includegraphics[width=5cm]{fig/print_slusalke}}
+	\centerline{\includegraphics[width=6.5cm]{fig/print_slusalke}}
 	\caption{a) model po tiskanju, b) lupina modela v modelirniku.}
 	\label{fig:print_slusalke}
 \end{figure}
